@@ -9,7 +9,7 @@ describe Study, type: :model do
     end
   end
 
-  context 'when study do not age_limit greater than 7' do
+  context 'when study do not have age_limit greater than 7' do
     it 'is invalid' do
       study = Study.new(age_limit: 3)
       expect(study.valid?).to eq false    
@@ -19,7 +19,6 @@ describe Study, type: :model do
   context 'when study do not have a drug' do
     it 'is invalid' do
       study = Study.new(drug: '')
-
       expect(study.valid?).to eq false    
     end
   end
