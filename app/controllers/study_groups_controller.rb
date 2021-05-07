@@ -1,0 +1,3 @@
+class StudyGroupsController < ApplicationController
+ 
+end 
