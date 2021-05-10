@@ -3,30 +3,52 @@ class StudiesController < ApplicationController
     # after_action :demo_after_action, only: [:index]
     #   around_action :demo_around_action
 
-    before_action :find_study_group, only: [:index, :create]
+    # before_action :find_study_group, only: [:index, :create]
     
+    # def create
+    #     @study = @study_group.studies.new(study_params)
+    #     if @study.save
+    #         render json: {notice: "Study created succesfully!!"}
+    #     else
+    #         render json: {notice: "Could not create study!!"}            
+    #     end
+    # end
+
+    # def index
+    #     # puts "index method called"
+    #     @studies= @study_group.studies
+    #     render json: @studies
+    # end
+    def new
+        @study=Study.new
+        
+    end
+
+
     def create
-        @study = @study_group.studies.new(study_params)
+        @study = Study.new(study_params)
         if @study.save
-            render json: {notice: "Study created succesfully!!"}
+            redirect_to studies_path
         else
-            render json: {notice: "Could not create study!!"}            
+            render :new           
         end
     end
 
     def index
         # puts "index method called"
-        @studies= @study_group.studies
-        render json: @studies
+        @studies= Study.all
+        # render json: @studies
     end
 
     def update
         @study=Study.find(params[:id])
         if @study
             @study.update(study_params)
-            render json: {notice: "Study updated successfully"}
+            redirect_to studies_path
+            # render json: {notice: "Study updated successfully"}
         else
-            render json: {error: "Could not find study"}
+            render :new           
+            # render json: {error: "Could not find study"}
         end
     end
 
@@ -34,9 +56,11 @@ class StudiesController < ApplicationController
         @study=Study.find(params[:id])
         if @study
             @study.destroy
-            render json: {notice: "Study deleted successfully"}
+            redirect_to studies_path
+            # render json: {notice: "Study deleted successfully"}
         else
-            render json: {error: "Could not find study"}
+            render :new           
+            # render json: {error: "Could not find study"}
         end
     end
     private

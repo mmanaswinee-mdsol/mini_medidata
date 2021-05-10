@@ -1,0 +1,38 @@
+<h2 style="border-bottom: 1px solid;"> Create Study </h2>
+
+<%if @study.errors.full_messages.present? %>
+    <% @study.errors.full_messages.each do |msg| %>
+        <ul>
+        <li> <%= msg %> </li>
+        </ul>
+
+    <% end %>
+
+<% end %>
+<%= form_with(model: @study, local: true) do |f| %>
+<p>
+ <%= f.label 'Name'%>
+ <%= f.text_field :name%>
+ </p>
+<p>
+ <%= f.label 'Age limit'%>
+ <%= f.number_field :age_limit %>
+ </p>
+ <p>
+ <%= f.label 'Drug' %>
+ <%= f.text_field :drug%>
+ </p>
+ <p>
+ <%= f.label 'Phase' %>
+ <%= f.number_field :phase%>
+ </p>
+ <p>
+ <%= f.label 'Symptoms' %>
+ <%= f.text_field :symptoms%>
+ </p>
+ <p>
+ <%= f.label 'Study Group ' %>
+ <%= f.number_field :study_group_id%>
+ </p>
+ <%= f.submit %>
+<% end %>
