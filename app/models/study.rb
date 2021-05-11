@@ -6,4 +6,7 @@ class Study < ApplicationRecord
     
     belongs_to :study_group
     has_many :sites
+
+    has_many :enrollments
+    has_many :subjects , through: :enrollments
 end
